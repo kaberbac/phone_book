@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :set_user, :only => [:show, :edit, :update, :destroy]
+
   def index
     @users = User.all
   end
@@ -14,23 +16,27 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     @user.update_attributes(params[:user])
     redirect_to users_path
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+    if @user.id.odd?
+      @user.destroy
+    else
+      flash[:odd_id] = 'You can delete only users with odd Id (impair)'
+    end
     redirect_to users_path
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end
