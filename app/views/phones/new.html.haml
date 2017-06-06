@@ -1,0 +1,6 @@
+%h1 New phone
+=link_to 'Back to phone index', phones_path
+=form_for @phone do |f|
+  =f.label 'phone_number'
+  =f.text_field 'phone_number'
+  =f.submit 'Add'
