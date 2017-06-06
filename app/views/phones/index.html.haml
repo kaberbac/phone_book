@@ -1,13 +1,17 @@
 %h1 Index phone
-= link_to 'Add new phone', new_phone_path
+= link_to 'Back to user index', users_path
+%br
+= link_to 'Add new phone', new_user_phone_path
 %table{border:1}
   %tr
+    %th user_id
     %th id
     %th phone_number
     -@phones.each do |p|
       %tr
+        %td= p.user.id
         %td= p.id
         %td= p.phone_number
-        %td= link_to 'Show', phone_path(p.id)
-        %td= link_to 'Edit', edit_phone_path(p.id)
-        %td= link_to 'Delete', phone_path(p.id), method: :delete
+        %td= link_to 'Show', user_phone_path(@user.id, p.id)
+        %td= link_to 'Edit', edit_user_phone_path(@user.id, p.id)
+        %td= link_to 'Delete', user_phone_path(@user.id, p.id), method: :delete

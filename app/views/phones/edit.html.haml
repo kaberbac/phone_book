@@ -1,6 +1,6 @@
 %h1 Edit phone
-= link_to 'Back to phone index', phones_path
-= form_for @phone do |f|
+= link_to 'Back to phone index', user_phones_path
+= form_for [@user, @phone] do |f|
   = f.label 'phone_number'
   = f.text_field 'phone_number'
   = f.submit 'Update'

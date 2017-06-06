@@ -1,8 +1,10 @@
 class PhonesController < ApplicationController
+  before_filter :set_user
   before_filter :set_phone, :only => [:show, :destroy, :edit, :update]
 
+
   def index
-    @phones = Phone.all
+    @phones = @user.phones
   end
 
   def new
@@ -10,8 +12,8 @@ class PhonesController < ApplicationController
   end
 
   def create
-    Phone.create(params[:phone])
-    redirect_to phones_path
+    @user.phones.create!(params[:phone])
+    redirect_to user_phones_path
   end
 
   def show
@@ -19,7 +21,7 @@ class PhonesController < ApplicationController
 
   def destroy
     @phone.destroy
-    redirect_to phones_path
+    redirect_to user_phones_path
   end
 
   def edit
@@ -27,10 +29,14 @@ class PhonesController < ApplicationController
 
   def update
     @phone.update_attributes(params[:phone])
-    redirect_to phones_path
+    redirect_to user_phones_path
   end
 
   def set_phone
-    @phone = Phone.find(params[:id])
+    @phone = @user.phones.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end

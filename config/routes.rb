@@ -1,5 +1,7 @@
 PhoneBook::Application.routes.draw do
-  resources :users, :phones
+  resources :users do
+    resources :phones
+  end
 
   root :to => 'users#index'
 

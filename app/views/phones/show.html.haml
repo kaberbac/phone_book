@@ -1,5 +1,8 @@
 %h1 Show phone
-=link_to 'back to phone index', phones_path
+=link_to 'back to phone index', user_phones_path
+%p
+  user_id
+  = @user.id
 %p
   id :
   = @phone.id

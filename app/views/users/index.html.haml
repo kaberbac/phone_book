@@ -10,6 +10,7 @@
       %tr
         %td= u.id
         %td= u.name
+        %td= link_to 'Phones', user_phones_path(u.id)
         %td= link_to 'Show', user_path(u.id)
         %td= link_to 'Edit', edit_user_path(u.id)
-        %td= link_to 'Delete', user_path(u.id), method: :delete
+        %td= link_to 'Delete', user_path(u.id), method: :delete if u.id.odd?
