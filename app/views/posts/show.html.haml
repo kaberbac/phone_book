@@ -1,9 +1,12 @@
 %h1 Show post
 %p
+  user_id
+  =@user.id
+%p
   id :
   =@post.id
 %p
   title :
   =@post.title
 
-= link_to 'Back to post index', posts_path
+= link_to 'Back to post index', user_posts_path

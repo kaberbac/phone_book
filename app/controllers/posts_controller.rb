@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
+  before_filter :set_user
   before_filter :set_post, :only => [:show, :edit, :update, :destroy]
 
+
   def index
-    @posts = Post.all
+    @posts = @user.posts
   end
 
   def new
@@ -10,8 +12,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(params[:post])
-    redirect_to posts_path
+    @user.posts.create!(params[:post])
+    redirect_to user_posts_path
   end
 
   def show
@@ -22,15 +24,19 @@ class PostsController < ApplicationController
 
   def update
     @post.update_attributes(params[:post])
-    redirect_to posts_path
+    redirect_to user_posts_path
   end
 
   def destroy
     @post.destroy
-    redirect_to posts_path
+    redirect_to user_posts_path
   end
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end

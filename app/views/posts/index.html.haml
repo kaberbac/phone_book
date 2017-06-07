@@ -1,15 +1,17 @@
 %h1 Index post
-=link_to 'Add new post', new_post_path
-%br
 =link_to 'Back to user index', users_path
+%br
+=link_to 'Add new post', new_user_post_path
 %table{border: 1}
   %tr
+    %th user_id
     %th id
     %th title
     -@posts.each do |p|
       %tr
+        %td= @user.id
         %td= p.id
         %td= p.title
-        %td= link_to 'Show', post_path(p.id)
-        %td= link_to 'Edit', edit_post_path(p.id)
-        %td= link_to 'Delete', post_path(p.id), method: :delete
+        %td= link_to 'Show', user_post_path(@user.id, p.id)
+        %td= link_to 'Edit', edit_user_post_path(@user.id, p.id)
+        %td= link_to 'Delete', user_post_path(@user.id, p.id), method: :delete
