@@ -12,6 +12,7 @@
         %td= @user.id
         %td= p.id
         %td= p.title
+        %td= link_to 'Comments', user_post_comments_path(@user.id, p.id)
         %td= link_to 'Show', user_post_path(@user.id, p.id)
         %td= link_to 'Edit', edit_user_post_path(@user.id, p.id)
         %td= link_to 'Delete', user_post_path(@user.id, p.id), method: :delete

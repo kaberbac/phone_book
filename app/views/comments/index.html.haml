@@ -1,0 +1,25 @@
+%h1 Index comments
+=link_to 'Back to user index', users_path
+%br
+=link_to 'Back to post index', user_posts_path
+%br
+=link_to 'Add new comment', new_user_post_comment_path
+%h2
+  Le poste:
+  =@post.title
+
+%table{border: 1}
+  %tr
+    %th user_id
+    %th post_id
+    %th id
+    %th body
+    -@comments.each do |c|
+      %tr
+        %td= @user.id
+        %td= @post.id
+        %td= c.id
+        %td= c.body
+        %td= link_to 'Show', user_post_comment_path(@user.id, @post.id, c.id)
+        %td= link_to 'Edit', edit_user_post_comment_path(@user.id, @post.id, c.id)
+        %td= link_to 'Delete', user_post_comment_path(@user.id, @post.id, c.id), method: :delete

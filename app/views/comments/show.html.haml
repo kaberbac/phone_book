@@ -1,0 +1,18 @@
+%h1 Show comment
+%p
+  user_id
+  =@user.id
+%p
+  post_id :
+  =@post.id
+%p
+  id :
+  =@comment.id
+
+%p
+  body :
+  =@comment.body
+
+= link_to 'Back to comment index', user_post_comments_path
+%br
+= link_to 'Back to post index', user_posts_path

@@ -1,7 +1,9 @@
 PhoneBook::Application.routes.draw do
   resources :users do
     resources :phones
-    resources :posts
+    resources :posts do
+      resources :comments
+    end
   end
 
 

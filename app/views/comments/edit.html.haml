@@ -1,0 +1,6 @@
+%h1 Edit comment
+= link_to 'Back to post index', user_posts_path
+=form_for [@user, @post, @comment] do |f|
+  = f.label 'body'
+  = f.text_area 'body'
+  = f.submit 'Update'
