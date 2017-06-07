@@ -1,0 +1,6 @@
+%h1 Edit post
+= link_to 'Back to post index', posts_path
+=form_for @post do |f|
+  = f.label 'title'
+  = f.text_field 'title'
+  = f.submit 'Update'

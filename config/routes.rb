@@ -3,6 +3,8 @@ PhoneBook::Application.routes.draw do
     resources :phones
   end
 
+  resources :posts
+
   root :to => 'users#index'
 
   # The priority is based upon order of creation:

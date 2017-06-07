@@ -1,0 +1,15 @@
+%h1 Index post
+=link_to 'Add new post', new_post_path
+%br
+=link_to 'Back to user index', users_path
+%table{border: 1}
+  %tr
+    %th id
+    %th title
+    -@posts.each do |p|
+      %tr
+        %td= p.id
+        %td= p.title
+        %td= link_to 'Show', post_path(p.id)
+        %td= link_to 'Edit', edit_post_path(p.id)
+        %td= link_to 'Delete', post_path(p.id), method: :delete

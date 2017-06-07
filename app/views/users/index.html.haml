@@ -1,4 +1,4 @@
-%h1 New user
+%h1 Index user
 = link_to 'Add new user', new_user_path
 %p{style: 'color:red'}
   =flash[:odd_id]
@@ -10,6 +10,7 @@
       %tr
         %td= u.id
         %td= u.name
+        %td= link_to 'Posts', posts_path
         %td= link_to 'Phones', user_phones_path(u.id)
         %td= link_to 'Show', user_path(u.id)
         %td= link_to 'Edit', edit_user_path(u.id)
