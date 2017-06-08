@@ -1,0 +1,51 @@
+=link_to 'Back to all posts', userview_posts_path
+
+%h1
+  =@post.title + ' by '
+  =User.find(@post.user_id).name
+%p
+  user_id
+  =@post.user_id
+%p
+  id :
+  =@post.id
+
+
+%h3 Comments:
+%table{border: 1}
+  %tr
+    %th user_id
+    %th post_id
+    %th id
+    %th created_at
+    %th body
+    -@comments.each do |c|
+      %tr
+        %td= c.user_id
+        %td= @post.id
+        %td= c.id
+        %td= c.created_at
+        %td= c.body
+        -#%td= link_to 'Show', user_post_comment_path(@user.id, @post.id, c.id)
+        -#%td= link_to 'Edit', edit_user_post_comment_path(@user.id, @post.id, c.id)
+        -#%td= link_to 'Delete', user_post_comment_path(@user.id, @post.id, c.id), method: :delete
+
+
+%h3 Add a comment:
+=form_for [:userview,@post, @comments.new] do |f|
+  -#= f.hidden_field 'user_id', value: @post.user_id
+  = f.hidden_field 'post_id', value: @post.id
+  = f.text_area 'body'
+  %br
+
+    = label_tag :new_user, "User name"
+    %br
+    = text_field_tag :new_user
+
+
+
+  = f.select(:user_id, User.all.collect {|u| [ u.name, u.id ] }, {include_blank: 'Select a user'})
+  %br
+  = f.submit 'Add'
+
+-#= link_to 'Back to post index', userview_posts_path

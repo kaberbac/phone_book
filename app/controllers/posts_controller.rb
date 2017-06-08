@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
   before_filter :set_user
   before_filter :set_post, :only => [:show, :edit, :update, :destroy]
-
-
+  
   def index
     @posts = @user.posts
   end

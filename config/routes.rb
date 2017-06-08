@@ -6,8 +6,14 @@ PhoneBook::Application.routes.draw do
     end
   end
 
+  namespace :userview do
+    resources :posts do
+      resources :comments
+    end
+  end
 
   root :to => 'users#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

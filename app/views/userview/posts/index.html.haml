@@ -1,0 +1,14 @@
+%h1 All posts
+=link_to 'Back to User index', users_path
+%table{border:1}
+  %tr
+    %th user_id
+    %th post_id
+    %th created_at
+    %th title
+    -@posts.each do |p|
+      %tr
+        %td= p.user_id
+        %td= p.id
+        %td= p.created_at
+        %td= link_to p.title, userview_post_path(p.id)

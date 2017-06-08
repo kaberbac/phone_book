@@ -1,4 +1,6 @@
 %h1 Index user
+= link_to 'show all posts', userview_posts_path
+%br
 = link_to 'Add new user', new_user_path
 %p{style: 'color:red'}
   =flash[:odd_id]
