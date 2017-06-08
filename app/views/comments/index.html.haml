@@ -16,7 +16,7 @@
     %th body
     -@comments.each do |c|
       %tr
-        %td= @user.id
+        %td= c.user.id
         %td= @post.id
         %td= c.id
         %td= c.body
