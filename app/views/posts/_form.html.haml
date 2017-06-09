@@ -1,0 +1,11 @@
+=form_for [@user, @post] do |f|
+  = f.label 'title'
+  = f.text_field 'title'
+  -#- if @post.persisted?
+  -#  = "this post is already existing in DB!"
+  -#- if @post.new_record?
+  -#  = "this post is not saved in the DB yet"
+  -if @post.persisted?
+    = f.submit 'update'
+  -else
+    = f.submit 'Add'

@@ -2,7 +2,7 @@
 
 %h1
   =@post.title + ' by '
-  =User.find(@post.user_id).name
+  =@post.user.name
 %p
   user_id
   =@post.user_id
@@ -14,6 +14,7 @@
 %h3 Comments:
 %table{border: 1}
   %tr
+    %th user_name
     %th user_id
     %th post_id
     %th id
@@ -21,6 +22,7 @@
     %th body
     -@comments.each do |c|
       %tr
+        %td= c.user.name
         %td= c.user_id
         %td= @post.id
         %td= c.id

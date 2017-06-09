@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
   before_filter :set_user
-  before_filter :set_post, :only => [:show, :edit, :update, :destroy]
+  before_filter :set_post, :except => [:create]
   
   def index
+
     @posts = @user.posts
   end
 
   def new
-    @post = Post.new
+
   end
 
   def create
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update_attributes(params[:post])
+    @post.update_attributes(params[:post].merge(user_id: @user.id))
     redirect_to user_posts_path
   end
 
@@ -32,7 +33,12 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = @user.posts.find(params[:id])
+
+    if params[:id].present?
+      @post = @user.posts.find(params[:id])
+    else
+      @post = Post.new
+    end
   end
 
   def set_user
